@@ -74,13 +74,13 @@
 	<_target>Sota</_target>
 	<_templeteMainClassFilePath>src\mainTemplete.source</_templeteMainClassFilePath>
 	<appPropaty>
-		<_AppTitle>02NetWorkSample</_AppTitle>
+		<_AppTitle>04PresenSota</_AppTitle>
 		<_ApplicationType>App</_ApplicationType>
 		<_ExecOption>-Dfile.encoding=UTF8 -Djava.library.path=/usr/local/share/OpenCV/java/ </_ExecOption>
 		<_StartSoundFile></_StartSoundFile>
 		<_Trigger>Button</_Trigger>
 		<_TriggerOperation></_TriggerOperation>
-		<_WorkingDirectory>NetWorkSample/</_WorkingDirectory>
+		<_WorkingDirectory>04PresenSota/</_WorkingDirectory>
 		<jarFileName>04PresenSota.jar</jarFileName>
 	</appPropaty>
 	<defaultInipos>0</defaultInipos>
