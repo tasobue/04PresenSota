@@ -3484,7 +3484,7 @@
 				</uintID>
 			</MotSend>
 			<debugPort>8765</debugPort>
-			<host>172.16.168.71</host>
+			<host>172.16.168.36</host>
 			<password>edison00</password>
 			<platform>Edison</platform>
 			<rootPath>/home/root/</rootPath>
