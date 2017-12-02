@@ -6,16 +6,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MessageClass {
+	private String _filePath;
+	private ArrayList<String> _genkoLists;
+	
     private int _speechSeq;
     private String _speechTxt;
-    private ArrayList<String> _genkoList;
-	private String _filePath;
+    private ArrayList<String> _speechTxts;
 	
     public MessageClass(){
         _speechSeq = -1;
         _speechTxt = "";
-    	_genkoList = new ArrayList<String>();
+    	_speechTxts = new ArrayList<String>();
     	_filePath = System.getProperty("user.dir");
+    	_genkoLists = setGenkoLists();
     }
 	
 	/**
@@ -24,8 +27,10 @@ public class MessageClass {
 	*原稿のCSVファイルを読み込み１行単位でArrayListクラスに格納します。
 	*CSVはこのクラスと同じディレクトリにあるファイルを読み込みます。
 	*/
-	public void readGenkoFile(String fileNm){
+	public void readGenkoFile(String pptNo){
 		try{
+			
+			String fileNm = getFileNm(Integer.parseInt(pptNo));
 			File file = new File(_filePath + "\\" + fileNm);
 			
 			if (checkBeforeReadfile(file)){
@@ -33,14 +38,10 @@ public class MessageClass {
 
         		String str;
         		while((str = br.readLine()) != null){
-        			//System.out.println("readGenkoFile Start");
-        			//System.out.println(str);
-        			//System.out.println("readGenkoFile End");
-        			_genkoList.add(str);
+        			_speechTxts.add(str);
         		}
 
         		br.close();
-				
 			
 			}else{
         		
@@ -77,7 +78,7 @@ public class MessageClass {
 		}
 		
 	}
-    
+	
 	/**
 	*	getMsgFrmCsv	
 	*	CSVの指定した行からテキストを読み込みます。
@@ -88,10 +89,10 @@ public class MessageClass {
     public String getMsgFrmCsv(int seq){
     	System.out.println("getMsgFrmCsv:" + seq);
     	
-    	if(_genkoList.size() < seq ){
+    	if(_speechTxts.size() < seq ){
     		_speechTxt = "end";
     	}else{
-    		_speechTxt = _genkoList.get(seq -1);
+    		_speechTxt = _speechTxts.get(seq -1);
     	}
         System.out.println("_speechTxt:" + _speechTxt);
        return _speechTxt;
@@ -105,12 +106,31 @@ public class MessageClass {
 	*/
 	
 	private static boolean checkBeforeReadfile(File file){
-    if (file.exists()){
-      if (file.isFile() && file.canRead()){
-        return true;
-      }
-    }
-
-    return false;
-  }
+	    if (file.exists()){
+	      if (file.isFile() && file.canRead()){
+	        return true;
+	      }
+	    }
+	    return false;
+	}
+	
+	
+	/**
+	*getFileNm
+	*原稿テキストのファイル名を取得する
+    *
+	*/
+	private String getFileNm(int _pptNo){
+		return _genkoLists.get(_pptNo +1);
+	}
+	
+	/**
+	* setGenkoLists
+	* 原稿名一覧をセットする
+	*/
+	private ArrayList<String> setGenkoLists(){
+		_genkoLists = new ArrayList<String>();
+		_genkoLists.add("genko.csv");
+		return _genkoLists;
+	}
 }
