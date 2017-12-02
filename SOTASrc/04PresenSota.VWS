@@ -61,6 +61,13 @@
 			<parentPb i:nil="true" />
 			<type>MotionAsSotaWish</type>
 		</MemberValueObject>
+		<MemberValueObject>
+			<initialize i:nil="true" />
+			<memberVariableLine>0</memberVariableLine>
+			<name>abortresult</name>
+			<parentPb i:nil="true" />
+			<type>RecogResult</type>
+		</MemberValueObject>
 	</_globalVariables>
 	<_import xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 		<d2p1:string>jp.vstone.RobotLib.*</d2p1:string>
@@ -3484,7 +3491,7 @@
 				</uintID>
 			</MotSend>
 			<debugPort>8765</debugPort>
-			<host>172.16.168.71</host>
+			<host>172.16.168.68</host>
 			<password>edison00</password>
 			<platform>Edison</platform>
 			<rootPath>/home/root/</rootPath>

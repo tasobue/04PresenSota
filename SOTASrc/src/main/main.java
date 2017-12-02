@@ -58,6 +58,7 @@ public class main
 		public static boolean booleanResult;
 		public static SpeechRecog recog = new SpeechRecog(motion);
 		public static MotionAsSotaWish sotawish = new MotionAsSotaWish(motion);
+		public static RecogResult abortresult;
 	}
 
 
