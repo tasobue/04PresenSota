@@ -5,31 +5,44 @@ public class Presentation {
 	public static final String WAIT_MESSAGE = "wait";
 	public static final String END_MESSAGE = "end";	
 	
+	public MessageClass msgCls;
+	public PowerpointOperation ppt;
+	
+	public Presentation(){
+	     msgCls = new MessageClass();
+	     ppt = new PowerpointOperation();
+	}
+	
+	
+	public void setPresentaion(String _pptNo){
+		//Œ´e‚ğ“Ç‚İ‚Ş
+    	msgCls.readGenkoFile(_pptNo);
 	}
 	
 	public String getSpeechTxt(String _rcvSeq){
-		String strMsgs;			//ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Ì–ß‚ï¿½l
-    	String[] strMsgsArr;	//ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Ì–ß‚ï¿½lï¿½ï¿½Jï¿½ï¿½ï¿½}ï¿½ï¿½Ø‚ï¿½Å•ï¿½ï¿½ï¿½
-    	String spchText;		//Sotaï¿½ï¿½ï¿½bï¿½ï¿½ï¿½ï¿½e
-    	String strMotionCd;		//Sotaï¿½Ì“ï¿½ï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½Ôï¿½
-    	String strPgNo;			//PPTï¿½Ìƒyï¿½[ï¿½Wï¿½Ôï¿½
+		String strMsgs;			//ƒƒbƒZ[ƒWƒNƒ‰ƒX‚©‚ç‚Ì–ß‚è’l
+    	String[] strMsgsArr;	//ƒƒbƒZ[ƒWƒNƒ‰ƒX‚©‚ç‚Ì–ß‚è’l‚ğƒJƒ“ƒ}‹æØ‚è‚Å•ªŠ„
+    	String spchText;		//Sota‚ª˜b‚·“à—e
+    	String strMotionCd;		//Sota‚Ì“®ì‚ğw’è‚·‚é”Ô†
+    	String strPgNo;			//PPT‚Ìƒy[ƒW”Ô†
 		
 		
-		//ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½Ìæ“¾
+		//ƒƒbƒZ[ƒW‚Ìæ“¾
         strMsgs = msgCls.getMsgFrmCsv(Integer.parseInt(_rcvSeq));
     	
     	if(END_MESSAGE.equals(strMsgs)){
-    		//Sotaï¿½ÉIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½}ï¿½ğ‘—‚ï¿½
+    		//Sota‚ÉI—¹ˆ—‚Ì‡}‚ğ‘—‚é
     		spchText = strMsgs;
     		return spchText;
     	}else{
 			
         	strMsgsArr = strMsgs.split(",", 0);
-        	strPgNo = strMsgsArr[1]; //ï¿½yï¿½[ï¿½Wï¿½Ôï¿½
-        	spchText = strMsgsArr[2];//Sotaï¿½ï¿½ï¿½bï¿½ï¿½ï¿½ï¿½e
-        	strMotionCd = strMsgsArr[3];//Sotaï¿½Ì“ï¿½ï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½Ôï¿½
+        	strPgNo = strMsgsArr[1]; //ƒy[ƒW”Ô†
+        	spchText = strMsgsArr[2];//Sota‚ª˜b‚·“à—e
+        	strMotionCd = strMsgsArr[3];//Sota‚Ì“®ì‚ğw’è‚·‚é”Ô†
         	
-        	//pptï¿½ğ‘€ï¿½
+        	//ppt‚ğ‘€ì
+        	if("1".equals(_rcvSeq)){
         		System.out.println("ppt.openPptFile");
         		ppt.openPptFile(PPT_NAME);
         	}else{
@@ -37,7 +50,7 @@ public class Presentation {
         		ppt.slidePage(strPgNo);
         	}
         	
-        	//ï¿½Nï¿½ï¿½ï¿½Cï¿½Aï¿½ï¿½ï¿½gï¿½Éƒï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½ï¿½ï¿½M
+        	//ƒNƒ‰ƒCƒAƒ“ƒg‚ÉƒƒbƒZ[ƒW‘—M
             return spchText;
     	
     	}
